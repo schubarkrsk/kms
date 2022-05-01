@@ -10,6 +10,7 @@ import hashlib
 import keyboard
 import sys
 import os
+import random
 import time
 
 license_and_description = "Copyleft (ↄ) Stanislav Chubar, 2022. All rights reserved\n" \
@@ -43,7 +44,7 @@ def menu_find():
     print(menu_lvl_1and2_list)
     select = input(">")
 
-    if select == "1":
+    if select == "1" or select == "2":
         trying_with_1stgen = KMS(generation=1)
         while True:
             print(menu_lvl_1and2of1_list)
@@ -59,9 +60,11 @@ def menu_find():
         key = ""
         for block in find:
             key = key + block + "-"
-        key = key[:(len(key)-1)]
+        key = key[:(len(key) - 1)]
         print(key.upper())
 
+    elif select == "2":
+        trying_with_2ndgen = KMS(generation=2)
 
     # Finish of function DON't edit!
     print("Press ESC to return into main menu")
@@ -70,8 +73,45 @@ def menu_find():
 
 
 def menu_generate():
-    print(menu_lvl_1and2of1_list)
+    print(menu_lvl_1and2_list)
     selected = input(">")
+
+    if selected == "1" or selected == "2":
+        count = 0
+        blocks = 0
+        while True:
+            print("How much license pair you need?")
+            uinp = input(">")
+            if uinp.isdigit() and int(uinp) >= 1:
+                count = int(uinp) - 1
+                break
+            else:
+                print("Oh no... your input must contain only digits (1,2...)")
+
+        # while True:
+        #     print("How much blocks in activation key you need you need?")
+        #     uinp = input(">")
+        #     if uinp.isdigit() and int(uinp) >= 1:
+        #         blocks = int(uinp) - 1
+        #         break
+        #     else:
+        #         print("Oh no... your input must contain only digits (1,2...)")
+
+        iterator = 0
+        while iterator <= count:
+            regnumber = input("Enter blocks with 6 digits each! Dont use separators or space between blocks!\n"
+                              ">")
+            activation = ""
+            find = KMS(generation=1)
+            find.set_params(regnumber)
+
+            print(f"LICENSE N.{iterator + 1}of{count + 1}\n"
+                  f"REG. No {regnumber}\n"
+                  f"Activation {find.get_activation()}\n"
+                  f"=========================")
+
+            iterator += 1
+
 
     # Finish of function DON't edit!
     print("Press ESC to return into main menu")
