@@ -67,8 +67,8 @@ def menu_find():
         trying_with_2ndgen = KMS(generation=2)
 
     # Finish of function DON't edit!
-    print("Press ESC to return into main menu")
-    keyboard.wait("esc")
+    print("Press SPACE to return into main menu")
+    keyboard.wait("space")
     clear_screen()
 
 
@@ -114,8 +114,8 @@ def menu_generate():
 
 
     # Finish of function DON't edit!
-    print("Press ESC to return into main menu")
-    keyboard.wait("esc")
+    print("Press SPACE to return into main menu")
+    keyboard.wait("space")
     clear_screen()
 
 
@@ -183,8 +183,8 @@ if __name__ == "__main__":
         elif selected == "2":
             menu_generate()
         elif selected == "3":
-            print("Goodbye! Pres ESC to close console")
-            keyboard.wait("esc")
+            print("Goodbye! Pres SPACE to close console")
+            keyboard.wait("space")
             sys.exit()
         else:
             print(menu_error)
